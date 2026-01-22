@@ -31,12 +31,24 @@
         </nav>
     </header>
 
+    <div class="loader"></div>
+
     <main>
+        <div class="categoryList">
+            <button class="active" data-name="all">All</button>
+            <button data-name="phone">Electronics</button>
+            <button data-name="cloths">Cloths</button>
+            <button data-name="shoes">Food</button>
+        </div>
         <div class="products">
             <div class="productCard">
-                <img src="https://plus.unsplash.com/premium_photo-1679913792906-13ccc5c84d44?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                <!-- <div class="loader hidden"></div> -->
+                <img class="hidden" src="https://plus.unsplash.com/premium_photo-1679913792906-13ccc5c84d44?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                     alt="Product Image">
-                <h3>Product Name</h3>
+                <div class="rating">
+                    <span>4.5</span>
+                </div>
+                <h3 class="pName">Product Name</h3>
                 <p>$19.99</p>
                 <button type="button">Add to Cart</button>
             </div>
