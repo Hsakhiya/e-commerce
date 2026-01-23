@@ -1,13 +1,20 @@
 let allProducts = [];
+let finalProducts = [];
 let allCategories = [];
 let category = "all";
 let productDiv = document.querySelector(".products");
 let categoryDiv = document.querySelector(".categoryList");
 let main = document.querySelector("main");
 let loader = document.querySelector(".loader");
+let sortSelect = document.getElementById("sortSelect");
+sortSelect.value = "default";
+
+
+
 
 let getProducts = async () => {
   // productDiv.innerHTML = "";
+  console.log("Fetching Products...");
   main.classList.add("hidden");
   loader.classList.remove("hidden");
   categoryDiv.innerHTML = ` <button class="active" value="all">All</button>`;
@@ -27,7 +34,7 @@ let getProducts = async () => {
   loader.classList.add("hidden");
   main.classList.remove("hidden");
 
-  displayProducts();
+  sortedProducts();
 };
 
 let getCategory = () => {
@@ -42,7 +49,7 @@ let getCategory = () => {
     e.target.classList.add("active");
     category = e.target.value;
     console.log(category);
-    displayProducts();
+    sortedProducts();
   };
 
   categoryButtons.forEach((button) =>
@@ -50,22 +57,50 @@ let getCategory = () => {
   );
 };
 
+let sortedProducts = () => {
+  finalProducts = [];
+  let sortedProducts = [];
+  allProducts.forEach((product) => {
+    if (product.category === category || category === "all") {
+      finalProducts.push(product);
+    }
+  });
+  if (sortSelect.value === "default") {
+    sortedProducts = finalProducts;
+  } else if (sortSelect.value === "lowToHigh") {
+    sortedProducts = finalProducts.sort((a, b) => a.price - b.price);
+  } else if (sortSelect.value === "highToLow") {
+    sortedProducts = finalProducts.sort((a, b) => b.price - a.price);
+  }
+
+  finalProducts = sortedProducts;
+  console.log("Sorted Products:");
+  console.log(finalProducts);
+  displayProducts();
+};
+
+sortSelect.addEventListener("change", (e) => {
+    console.log(e.target.value);
+    sortedProducts()
+
+})
+
 let displayProducts = () => {
-  productDiv.innerHTML = "";
-  allProducts.forEach((element) => {
-    if (element.category === category || category === "all") {
-      console.log(element.category);
+    productDiv.innerHTML = "";
+  finalProducts.forEach((element) => {
       productDiv.innerHTML += `<div class="productCard">
-                <img class="" src="${element.image}"
+                <img class="productImage" src="${element.image}"
                     alt="Product Image">
                 <div class="rating">
                     <span>${element.category}</span>
                 </div>
                 <h3 class="pName">${element.title}</h3>
                 <p>$${element.price}</p>
-                <button type="button">Add to Cart</button>
+                <button class="fa fa-shopping-cart" type="button"></button>
             </div>`;
-    }
+
+            let productImage = document.querySelectorAll(".productImage");
+            console.log(productImage);
   });
 };
 
