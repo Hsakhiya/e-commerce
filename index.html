@@ -13,71 +13,130 @@
     <header>
         <nav>
             <div class="logoDiv"><a href="#" class="logo">Product Explorer</a></div>
-
             <div class="right">
-                <div class="navigator">
-                    <a href="#">Home</a>
-                    <a href="#">Products</a>
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
-                </div>
-                <div class="actionBtns">
-                    <button type="button">Cart</button>
-                    <button type="button">Sign in</button>
-                </div>
-
+                <div class="navigator"><a href="#">Home</a><a href="#">Products</a><a href="#">About</a><a
+                        href="#">Contact</a></div>
+                <div class="actionBtns"><button type="button" id="cartNavBtn">Cart</button><button type="button">Sign
+                        in</button></div>
             </div>
-
-
         </nav>
     </header>
-
     <div class="loader"></div>
-
     <main>
-        <div class="searchSection">
-            <div class="search">
-                <input type="text" id="searchInput" placeholder="Search products...">
-            </div>
-
-            <div class="sortOptions">
-                <label for="sortSelect">Sort by:</label>
-                <select id="sortSelect">
+        <div class="sortingBar">
+            <section class="leftFilters">
+                <div class="searchBar"><input type="text" id="searchInput" placeholder="Search here..."></div>
+                <div class="categoryList"><button class="active" data-name="all">All</button></div>
+            </section>
+            <div class="sortOptions"><label for="sortSelect">Sort by:</label><select id="sortSelect">
                     <option value="default">Default</option>
                     <option value="lowToHigh">Price: Low to High</option>
                     <option value="highToLow">Price: High to Low</option>
-                    <!-- <option value="ratingHighToLow">Rating: High to Low</option>
-                    <option value="ratingLowToHigh">Rating: Low to High</option> -->
-                </select>
-            </div>
-
+                </select></div>
         </div>
-        <div class="sortingBar">
-            <div class="categoryList">
-                <button class="active" data-name="all">All</button>
-            </div>
-        </div>
-
+        <div class="toastContainer"></div>
         <div class="products">
             <div class="productCard">
-
-                <div class="productImage">
-                    <div class="loader hidden"></div>
-                    <img class=""
-                        src="https://plus.unsplash.com/premium_photo-1679913792906-13ccc5c84d44?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                        alt="Product Image">
-                </div>
-
-                <div class="rating">
-                    <span>4.5</span>
-                </div>
+                <div class="loader hidden"></div><img
+                    src="https://plus.unsplash.com/premium_photo-1679913792906-13ccc5c84d44?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Product Image">
+                <div class="rating"><span>4.5</span></div>
                 <h3 class="pName">Product Name</h3>
-                <p>$19.99</p>
-                <button class="fa fa-shopping-cart" type="button"></button>
+                <p>$19.99</p><button class="fa fa-shopping-cart" type="button"></button>
             </div>
         </div>
     </main>
-
+    <section class="productDetailPage hidden">
+        <div class="toastContainer"></div>
+        <div class="productDetailHeader"><button class="productBackBtn" type="button"><i
+                    class="fa fa-chevron-left"></i></button></div>
+        <section class="productDetailContent">
+            <div class="productDetailMain">
+                <div class="productDetailImageWrapper">
+                    <div class="detailImageLoader"></div><img id="productDetailImage" class="hidden" src=""
+                        alt="Product Image">
+                </div>
+                <div class="productDetailInfo">
+                    <p class="productDetailCategory" id="productDetailCategory">category</p>
+                    <h1 class="productDetailName" id="productDetailName">Product Name</h1>
+                    <p class="productDetailDescription" id="productDetailDescription">Product Description</p>
+                    <div class="productDetailRating"><span class="ratingLabel">Ratings</span>
+                        <div class="stars" id="productDetailStars"><i class="fa fa-star"></i><i
+                                class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i
+                                class="fa fa-star"></i></div>
+                    </div>
+                    <h2 class="productDetailPrice" id="productDetailPrice">Price</h2><button class="addToCartBtn"
+                        type="button" id="productDetailAddToCart"><i class="fa fa-shopping-cart"></i> Add To
+                        Cart</button>
+                </div>
+            </div>
+            <div class="relatedProductsSection">
+                <h2 class="relatedProductsTitle">Related Products</h2>
+                <div class="relatedProducts" id="relatedProducts"></div>
+            </div>
+        </section>
+    </section>
+    <section class="cartPage hidden">
+        <div class="cartHeaderRow"><button class="backBtn" type="button"><i class="fa fa-chevron-left"></i></button>
+        </div>
+        <section class="cartContent">
+            <h1 class="cartTitle">Cart</h1>
+            <section class="cartItemsWrapper">
+                <div class="cartItems"></div>
+            </section>
+            <div class="cartFooter">
+                <div class="cartTotal"><span>Total:</span><span class="cartTotalAmount">$0.00</span></div><button
+                    class="nextBtn" type="button" id="checkoutBtn">Next</button>
+            </div>
+        </section>
+    </section>
+    <section class="checkoutPage hidden">
+        <div class="checkoutHeaderRow"><button class="checkoutBackBtn" type="button"><i
+                    class="fa fa-chevron-left"></i></button></div>
+        <section class="checkoutContent">
+            <h1 class="checkoutTitle">Review Your Order</h1>
+            <section class="orderReviewSection">
+                <div class="orderReviewItems" id="orderReviewItems"></div>
+            </section>
+            <section class="customerDetailsSection">
+                <h2 class="sectionTitle">Fill Details Below</h2>
+                <form class="customerForm" id="customerForm">
+                    <div class="formField"><label for="customerName">Name</label><input type="text" id="customerName"
+                            name="name" placeholder="Write here..." required></div>
+                    <div class="formField"><label for="customerMobile">Mobile no</label><input type="tel"
+                            id="customerMobile" name="mobile" placeholder="Write here..." required></div>
+                    <div class="formField"><label for="customerAddress">Address</label><input type="text"
+                            id="customerAddress" name="address" placeholder="Write here..." required></div>
+                    <div class="formField"><label for="customerPincode">Pincode</label><input type="text"
+                            id="customerPincode" name="pincode" placeholder="Write here..." required></div>
+                </form>
+            </section>
+            <section class="paymentSection">
+                <h2 class="sectionTitle">Choose Payment Method</h2>
+                <div class="paymentOptions"><label class="paymentOption"><input type="radio" name="paymentMethod"
+                            value="cod" checked><span class="paymentButton">Cash on Delivery</span></label></div>
+            </section>
+            <div class="checkoutFooter"><button class="buyNowBtn" type="button" id="buyNowBtn">Buy Now</button></div>
+        </section>
+    </section>
+    <section class="confirmationPage hidden">
+        <section class="confirmationContent">
+            <h1 class="confirmationTitle">Thank you For Your Purchase...!</h1>
+            <div class="successIcon"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="90" fill="#00C851" />
+                    <path d="M60 100 L85 125 L140 70" stroke="white" stroke-width="12" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round" />
+                </svg></div>
+            <div class="orderDetails">
+                <p class="orderDetailItem">Order Id: <span id="confirmOrderId"></span></p>
+                <p class="orderDetailItem">Product Name: <span id="confirmProductName"></span></p>
+                <p class="orderDetailItem">Price: <span id="confirmPrice"></span></p>
+                <p class="orderDetailItem">Payment Mode: <span id="confirmPaymentMode"></span></p>
+                <p class="orderDetailItem">Address: <span id="confirmAddress"></span></p>
+                <p class="orderDetailItem">Expected Delivery date: <span id="confirmDeliveryDate"></span></p>
+            </div><button class="continueShoppingBtn" type="button" id="continueShoppingBtn">Continue Shopping</button>
+        </section>
+    </section>
     <script src="script.js"></script>
 </body>
 
